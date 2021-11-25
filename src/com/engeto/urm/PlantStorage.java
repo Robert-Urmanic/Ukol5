@@ -17,25 +17,32 @@ public class PlantStorage {
     }
 
     public String getPlant(int queue) {
-        return this.plant.get(queue).getName() + "\t" + this.plant.get(queue).getNotes() + "\t" + this.plant.get(queue).getWateringFrequency() + "\t" + this.plant.get(queue).getLastWatering() + "\t" + this.plant.get(queue).getPlanted();
+        return plant.get(queue).getName() +
+                "\t" + plant.get(queue).getNotes() +
+                "\t" + plant.get(queue).getWateringFrequency() +
+                "\t" + plant.get(queue).getLastWatering() +
+                "\t" + plant.get(queue).getPlanted();
     }
 
     public void removePlant(int queue) {
-        this.plant.remove(queue);
+        plant.remove(queue);
     }
 
-    public void loadFile(String fileName) throws DateTimeParseException, NumberFormatException {
+    public void loadFile(String fileName) {
         try (Scanner file = new Scanner(new File(fileName))) {
-
             while (file.hasNextLine()) {
                 String[] tempPlantHolder = file.nextLine().split("\t");
-                plant.add(new Plant(tempPlantHolder[0], tempPlantHolder[1], LocalDate.parse(tempPlantHolder[4]), LocalDate.parse(tempPlantHolder[3]), Integer.parseInt(tempPlantHolder[2])));
+                plant.add(new Plant(tempPlantHolder[0],
+                        tempPlantHolder[1],
+                        LocalDate.parse(tempPlantHolder[4]),
+                        LocalDate.parse(tempPlantHolder[3]),
+                        Integer.parseInt(tempPlantHolder[2])));
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (DateTimeParseException e){
+        } catch (DateTimeParseException e) {
             System.err.println("Some date type in the file was written wrong!");
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.err.println("Frequency of planting was set wrong!");
         }
 
@@ -58,11 +65,10 @@ public class PlantStorage {
         return s;
     }
 
-    public String nextLine(int i, int plantSize){
-        if (i + 1 == plantSize){
+    public String nextLine(int i, int plantSize) {
+        if (i + 1 == plantSize) {
             return "";
-        }
-        else return "\n";
+        } else return "\n";
     }
 }
 

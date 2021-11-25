@@ -6,16 +6,22 @@ public class Main {
     public static void main(String[] args) {
         PlantStorage plantStorage = new PlantStorage();
         plantStorage.loadFile("kvetiny.txt");
+
+        System.out.println("\n\t" + "Watering information: " + "\n");
         for (Plant temp : plantStorage.plant) {
             System.out.println(temp.getWateringInfo());
         }
+
+        System.out.println("\n\t" + "Výpis přidaných rostlin: ");
         plantStorage.addPlant(new Plant("Monstera", "Krasna, pekna", LocalDate.now(), LocalDate.now().plusDays(1), 3));
         plantStorage.addPlant(new Plant("Orchidej", "Pekna, krasna", LocalDate.now().minusDays(10), LocalDate.now().plusDays(5), 7));
         plantStorage.removePlant(1);
         System.out.println();
-        //System.out.println(plantStorage.toFile());
+        System.out.println(plantStorage.toFile());
         plantStorage.uploadFile();
         plantStorage.loadFile("vystup.txt");
+
+        System.out.println("\n\t" + "Test špatného termínu a frekvence:" + "\n");
 
         PlantStorage plantStorage2 = new PlantStorage();
         plantStorage2.loadFile("kvetiny-spatne-datum.txt");
