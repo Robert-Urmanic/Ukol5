@@ -14,20 +14,36 @@ public class Plant {
         this.name = name;
         this.notes = notes;
         this.planted = planted;
-        setLastWateringWithException(lastWatering);
-        setWateringFrequencyWithException(wateringFrequency);
+        try {
+            setLastWatering(lastWatering);
+        } catch (DateException e) {
+            System.out.println("The date of last watering cannot be before the date of planting.");
+        }
+        try {
+            setWateringFrequency(wateringFrequency);
+        } catch (PlantException e) {
+            System.out.println("The frequency of watering cannot be equal to or lower than 0");
+        }
 
     }
 
     public Plant(){
         notes = "";
-        setLastWateringWithException(LocalDate.now());
+        try {
+            setLastWatering(LocalDate.now());
+        } catch (DateException e) {
+            System.out.println("The date of last watering cannot be before the date of planting.");
+        }
     }
 
     public Plant(String name){
         this();
         this.name = name;
-        setWateringFrequencyWithException(7);
+        try {
+            setWateringFrequency(7);
+        } catch (PlantException e) {
+            System.out.println("The frequency of watering cannot be equal to or lower than 0");
+        }
     }
 
     public String getName() {
@@ -67,14 +83,6 @@ public class Plant {
         this.lastWatering = lastWatering;
     }
 
-    public void setLastWateringWithException(LocalDate lastWatering){
-        try {
-            setLastWatering(lastWatering);
-        } catch (DateException e) {
-            System.err.println("The date of last watering cannot be before the date of planting.");
-        }
-    }
-
     public int getWateringFrequency() {
         return wateringFrequency;
     }
@@ -86,13 +94,6 @@ public class Plant {
         this.wateringFrequency = wateringFrequency;
     }
 
-    public void setWateringFrequencyWithException(int wateringFrequency){
-        try {
-            setWateringFrequency(wateringFrequency);
-        } catch (PlantException e) {
-            System.err.println("The frequency of watering cannot be equal to or lower than 0");
-        }
-    }
 
     public String getWateringInfo(){
         return "Plant " + name + " was watered last time on this date: " + lastWatering + ".\nNext date of watering is: " + lastWatering.plusDays(wateringFrequency);

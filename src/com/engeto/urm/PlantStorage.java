@@ -28,7 +28,7 @@ public class PlantStorage {
         plant.remove(queue);
     }
 
-    public void loadFile(String fileName) {
+    public void loadFile(String fileName){
         try (Scanner file = new Scanner(new File(fileName))) {
             while (file.hasNextLine()) {
                 String[] tempPlantHolder = file.nextLine().split("\t");
@@ -40,10 +40,6 @@ public class PlantStorage {
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (DateTimeParseException e) {
-            System.err.println("Some date type in the file was written wrong!");
-        } catch (NumberFormatException e) {
-            System.err.println("Frequency of planting was set wrong!");
         }
 
     }
