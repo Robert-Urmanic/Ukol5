@@ -1,0 +1,4 @@
+Fialka 1	Popis fialky - je fialová a hezká	3	2021-05-12	2021-01-01
+Sukulent v koupelně	Nezalévá se	365	2011-03-01	2011-03-01
+Monstera	Krasna, pekna	3	2021-12-12	2021-12-11
+Orchidej	Pekna, krasna	7	2021-12-16	2021-12-01
